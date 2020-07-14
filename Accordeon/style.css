@@ -1,0 +1,98 @@
+html *,
+body * {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-text-size-adjust: none;
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 100px 20px;
+    min-height: calc(100vh + 1px);
+    justify-content: space-between;
+}
+
+p {
+    margin: 15px 0;
+    line-height: 1.8em;
+}
+
+
+
+
+.accordeon--cover {
+    margin-bottom: 20px;
+    width: calc(50% - 10px);
+}
+
+.accordeon--container {
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.accordeon--head {
+    padding: 25px;
+    cursor: pointer;
+    position: relative;
+}
+
+.accordeon--head:hover {
+    color: #2997ff;
+}
+
+.accordeon--head::before {
+    content: '';
+    right: 20px;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: calc(50% - 2px);
+    transition: all .2s ease-out;
+    background: url(arrow.svg) no-repeat 50% 50% / 100%;
+}
+
+.accordeon--head-caption {
+    margin: 0;
+    font-size: 16px;
+}
+
+.accordeon--body {
+    padding: 0 20px;
+}
+
+.webcore-accordeon--more {
+    color: #2997ff;
+    display: table;
+    margin: 0 auto;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.8em;
+    background-color: transparent;
+}
+
+.webcore-accordeon--more:hover {
+    text-decoration: underline;
+}
+
+.webcore-accordeon--active .accordeon--head::before {
+    transform: rotate(180deg);
+}
+
+
+
+
+
+
+
+
+
+

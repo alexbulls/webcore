@@ -1,0 +1,130 @@
+html *,
+body * {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-text-size-adjust: none;
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.select-box--cover {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-between;
+    background-color: #222127;
+}
+
+
+
+
+
+
+.select--cover {
+    z-index: 1;
+    width: calc(33.333% - 10px);
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 15px;
+    background-color: #DBDBDB;
+    transition: all .2s ease-out;
+    border: 1px solid rgba(0, 0, 0, .2);
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, .5);
+}
+
+.select--cover:hover {
+    background-color: #FFFFFF;
+}
+
+.select--caption {
+    margin: 0;
+    font-size: 16px;
+    position: relative;
+    padding: 10px 20px;
+}
+
+.select--caption::before {
+    content: '';
+    right: 20px;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: calc(50% - 5px);
+    transition: all .15s ease-out;
+    background: url(arrow.svg) no-repeat 50% 50% / 100%;
+}
+
+.select--container {
+    left: -1px;
+    z-index: 2;
+    opacity: 0;
+    box-shadow: inherit;
+    pointer-events: none;
+    overflow: auto;
+    max-height: 300px;
+    width: calc(100% + 2px);
+    position: absolute;
+    top: calc(100% + 5px);
+    transition: inherit;
+    transform: translateY(20px);
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background-color: inherit;
+}
+
+.select--option {
+    width: 100%;
+    display: block;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: left;
+    padding: 10px 20px;
+    background-color: transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.select--option:last-of-type {
+    border-bottom: none;
+}
+
+.select--option:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+.test-select--active,
+.test1-select--active {
+    opacity: 1;
+    background-color: #FFFFFF;
+}
+
+.test-select--active .test-select--caption::before,
+.test1-select--active .test1-select--caption::before {
+    transform: rotate(180deg);
+}
+
+.test-select--active .test-select--container,
+.test1-select--active .test1-select--container {
+    opacity: 1;
+    pointer-events: all;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+
+
+
+

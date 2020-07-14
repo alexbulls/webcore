@@ -1,0 +1,53 @@
+html *,
+body * {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-text-size-adjust: none;
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    padding: 20px;
+}
+
+.webcore-couter--cover {
+    width: 160px;
+    display: flex;
+    margin-bottom: 10px;
+    border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.webcore-couter--input {
+    width: 80px;
+    height: 40px;
+    padding: 0 10px;
+    font-size: 16px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.webcore-couter--button {
+    width: 40px;
+    height: 40px;
+    color: #2997ff;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 40px;
+    text-align: center;
+    background-color: transparent;
+}
+
+.webcore-couter--button-up {
+    border-right: 1px solid rgba(0, 0, 0, .2);
+}
+
+.webcore-couter--button-down {
+    border-left: 1px solid rgba(0, 0, 0, .2);
+}
+

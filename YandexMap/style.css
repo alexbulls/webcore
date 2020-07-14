@@ -1,0 +1,33 @@
+html *,
+body * {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-text-size-adjust: none;
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.map--cover {
+    width: 100%;
+    padding: 10px;
+    padding-top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.map--item {
+    margin-top: 10px;
+    width: calc(50% - 5px);
+    height: calc(50vh - 15px);
+}
+
+
+
+
+

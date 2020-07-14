@@ -1,0 +1,81 @@
+html *,
+body * {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-text-size-adjust: none;
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+}
+
+p {
+    margin: 15px 0;
+    line-height: 1.8em;
+}
+
+.tabs--cover {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.webcore-tab--cover {
+    overflow: hidden;
+    width: calc(50% - 10px);
+}
+
+.webcore-tab--buttons {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.webcore-tab--button {
+    color: #2997ff;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1.8em;
+    margin-right: 30px;
+    background-color: transparent;
+}
+
+.webcore-tab--button.webcore-tab--active {
+    text-decoration: underline;
+}
+
+.webcore-tab--button:last-of-type {
+    margin-right: 0;
+}
+
+.webcore-tab--button:hover {
+    text-decoration: underline;
+}
+
+.webcore-tab--body {
+    width: 100%;
+    margin-top: 15px;
+    border-top: 1px solid rgba(0, 0, 0, .2);
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.webcore-tab--container {
+    opacity: 0;
+    width: 100%;
+    transform: translateX(40px);
+}
+
+.webcore-tab--container.webcore-tab--active {
+    opacity: 1;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+

@@ -1,0 +1,429 @@
+/*
+ * WC_Gallery 1.1
+ *
+ * Copyright 2020 Alexandr Bykov
+ *
+ * Released under the MIT License
+ *
+ * Released on: May 30, 2020
+ */
+
+:root {
+    --WC_GAL_ICON: 22px;
+    --WC_GAL_HEIGHT: 44px;
+    --WC_GAL_INDENT: 20px;
+    --WC_GAL_MIN_PADDING: 3px;
+    --WC_GAL_GRAY: rgba(15, 15, 15, 1);
+    --WC_GAL_BLUE: rgba(41, 151, 255, 1);
+    --WC_GAL_WHITE: rgba(255, 255, 255, 1);
+    --WC_GAL_WHITE_LIGHT: rgba(75, 75, 75, 1);
+    --WC_GAL_FAST: all .28s cubic-bezier(.23,.58,.18,1);
+}
+
+@keyframes autoplay {
+
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+
+}
+
+.webcore-gallery--cover,
+.webcore-gallery--cover * {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.webcore-gallery--cover {
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow: hidden;
+    pointer-events: none;
+    transition: var(--WC_GAL_FAST);
+}
+
+.webcore-gallery--inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: inherit;
+}
+
+.webcore-gallery--inner::before {
+    top: 0;
+    left: 0;
+    z-index: 1;
+    content: '';
+    width: 100%;
+    height: 100%;
+    opacity: .96;
+    position: absolute;
+    background-color: var(--WC_GAL_GRAY);
+}
+
+.webcore-gallery--top {
+    z-index: 2;
+    display: flex;
+    margin: 0 auto;
+    position: relative;
+    justify-content: space-between;
+    height: var(--WC_GAL_HEIGHT);
+    width: calc(100% - var(--WC_GAL_INDENT));
+    border-bottom: 1px solid var(--WC_GAL_WHITE_LIGHT);
+}
+
+.webcore-gallery--autoplaybar {
+    left: 0;
+    width: 100%;
+    height: 1px;
+    bottom: -1px;
+    overflow: hidden;
+    position: absolute;
+    background-color: transparent;
+}
+
+.webcore-gallery--autoplaybar-slide {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform: translateX(-100%);
+    transition: var(--WC_GAL_FAST);
+    background-color: var(--WC_GAL_BLUE);
+}
+
+.webcore-gallery--infobar {}
+
+.webcore-gallery--infobar-item {
+    font-size: 12px;
+    color: var(--WC_GAL_WHITE);
+    line-height: var(--WC_GAL_HEIGHT);
+}
+
+.webcore-gallery--toolbar {
+    display: flex;
+}
+
+.webcore-gallery--toolbar-item {
+    cursor: pointer;
+    position: relative;
+    background-color: transparent;
+    width: var(--WC_GAL_HEIGHT);
+    border-left: 1px solid var(--WC_GAL_WHITE_LIGHT);
+}
+
+.webcore-gallery--icon {
+    display: block;
+    position: absolute;
+    width: var(--WC_GAL_ICON);
+    height: var(--WC_GAL_ICON);
+    transition: var(--WC_GAL_FAST);
+    fill: var(--WC_GAL_WHITE);
+    top: calc(50% - calc(var(--WC_GAL_ICON) / 2));
+    left: calc(50% - calc(var(--WC_GAL_ICON) / 2));
+}
+
+.webcore-gallery--toolbar-item:hover .webcore-gallery--icon {
+    fill: var(--WC_GAL_BLUE);
+}
+
+.webcore-gallery--toolbar-autoplay-play {
+    opacity: 1;
+}
+
+.webcore-gallery--toolbar-autoplay-paused {
+    opacity: 0;
+}
+
+.webcore-gallery--center {
+    z-index: 3;
+    margin: 0 auto;
+    position: relative;
+    width: calc(100% - var(--WC_GAL_INDENT));
+    height: calc(100% - calc(var(--WC_GAL_HEIGHT) * 2));
+}
+
+.webcore-gallery--navbar {
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    pointer-events: none;
+    height: var(--WC_GAL_HEIGHT);
+    top: calc(50% - calc(var(--WC_GAL_HEIGHT) / 2));
+}
+
+.webcore-gallery--navbar-item {
+    z-index: 7;
+    cursor: pointer;
+    position: relative;
+    pointer-events: all;
+    background-color: transparent;
+    width: var(--WC_GAL_HEIGHT);
+    border: 1px solid var(--WC_GAL_WHITE_LIGHT);
+}
+
+.webcore-gallery--navbar-item:hover .webcore-gallery--icon {
+    fill: var(--WC_GAL_BLUE);
+}
+
+.webcore-gallery--navbar-prev {}
+
+.webcore-gallery--navbar-next {}
+
+.webcore-gallery--track {
+    height: 100%;
+    position: relative;
+    display: flex;
+    transition: var(--WC_GAL_FAST);
+    padding: calc(var(--WC_GAL_MIN_PADDING) + 1px) 0;
+}
+
+.webcore-gallery--track-slide {
+    z-index: 6;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--WC_GAL_FAST);
+}
+
+.webcore-gallery--track-image {
+    display: block;
+    max-width: calc(calc(100% - var(--WC_GAL_INDENT)) - calc(var(--WC_GAL_HEIGHT) * 2));
+    max-height: 100%;
+    object-fit: contain;
+    transition: var(--WC_GAL_FAST);
+}
+
+.webcore-gallery--descbar {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    padding-bottom: 10px;
+    pointer-events: none;
+}
+
+.webcore-gallery--descbar-title {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    text-align: center;
+    color: var(--WC_GAL_WHITE);
+}
+
+.webcore-gallery--descbar-subtitle {
+    display: block;
+    font-size: 14px;
+    text-align: center;
+    color: var(--WC_GAL_WHITE);
+}
+
+.webcore-gallery--bottom {
+    z-index: 2;
+    margin: 0 auto;
+    position: relative;
+    height: calc(var(--WC_GAL_HEIGHT) * 1);
+    width: calc(100% - var(--WC_GAL_INDENT));
+    border-top: 1px solid var(--WC_GAL_WHITE_LIGHT);
+}
+
+.webcore-gallery--progressbar {
+    top: -1px;
+    width: 100%;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    transition: var(--WC_GAL_FAST);
+    background-color: transparent;
+}
+
+.webcore-gallery--progressbar-slide {
+    top: 0;
+    left: 0;
+    height: 100%;
+    position: absolute;
+    transition: var(--WC_GAL_FAST);
+    background-color: var(--WC_GAL_BLUE);
+}
+
+.webcore-gallery--thumbnails {
+    opacity: 0;
+    height: 100%;
+    display: flex;
+    position: relative;
+    pointer-events: none;
+    transition: var(--WC_GAL_FAST);
+    padding: var(--WC_GAL_MIN_PADDING) 0;
+}
+
+.webcore-gallery--thumbnails-item {
+    width: 55px;
+    height: 100%;
+    display: block;
+    flex-shrink: 0;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid transparent;
+    transition: var(--WC_GAL_FAST);
+    margin-right: var(--WC_GAL_MIN_PADDING);
+}
+
+.webcore-gallery--thumbnails-item::before {
+    top: 0;
+    left: 0;
+    opacity: .8;
+    width: 100%;
+    height: 100%;
+    content: '';
+    position: absolute;
+    transition: var(--WC_GAL_FAST);
+    background-color: var(--WC_GAL_GRAY);
+}
+
+.webcore-gallery--thumbnails-item:hover::before {
+    opacity: .5;
+}
+
+.webcore-gallery--thumbnails-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+
+
+.webcore-gallery--noactive {
+    cursor: default !important;
+}
+
+.webcore-gallery--noactive .webcore-gallery--icon {
+    fill: var(--WC_GAL_WHITE_LIGHT) !important;
+}
+
+
+
+.webcore-gallery--grabbing,
+.webcore-gallery--grabbing * {
+    cursor: -webkit-grabbing !important;
+    cursor: grabbing !important;
+}
+
+
+
+
+.webcore-gallery--cover.webcore-gallery--active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.webcore-gallery--toolbar-autoplay.webcore-gallery--active .webcore-gallery--toolbar-autoplay-play {
+    opacity: 0;
+}
+
+.webcore-gallery--toolbar-autoplay.webcore-gallery--active .webcore-gallery--toolbar-autoplay-paused {
+    opacity: 1;
+}
+
+.webcore-gallery--autoplaybar-slide.webcore-gallery--active {
+    animation: autoplay 1000ms linear 0s infinite;
+}
+
+.webcore-gallery--track-image.webcore-gallery--active {
+    transform: scale(1.1);
+}
+
+.webcore-gallery--thumbnails.webcore-gallery--active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.webcore-gallery--thumbnails-item.webcore-gallery--active {
+    border: 1px solid var(--WC_GAL_BLUE);
+}
+
+.webcore-gallery--thumbnails-item.webcore-gallery--active::before {
+    opacity: 0 !important;
+}
+
+
+
+
+@media (pointer: coarse) {
+    
+    .webcore-gallery--toolbar-item:hover .webcore-gallery--icon {
+        fill: var(--WC_GAL_WHITE);
+    }
+    
+    .webcore-gallery--navbar-item:hover .webcore-gallery--icon {
+        fill: var(--WC_GAL_WHITE);
+    }
+    
+    .webcore-gallery--thumbnails-item:hover::before {
+        opacity: .8;
+    }
+    
+    .webcore-gallery--track-image {
+        max-width: calc(100% - var(--WC_GAL_INDENT));
+    }
+    
+    
+    
+    .webcore-gallery--bottom {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    
+}
+
+
+
+/*
+.fancybox-can-zoomOut .fancybox-content {
+    cursor: zoom-out;
+}
+
+.fancybox-can-zoomIn .fancybox-content {
+    cursor: zoom-in;
+}
+
+.fancybox-can-swipe .fancybox-content,
+.fancybox-can-pan .fancybox-content {
+    cursor: -webkit-grab;
+    cursor: grab;
+}
+
+.fancybox-is-grabbing .fancybox-content {
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+}*/
+
+
+
+
